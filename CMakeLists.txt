@@ -36,19 +36,38 @@ endif()
 
 list(APPEND flags -D_POSIX_C_SOURCE=201112L)
 
-add_library(libexample
+add_library(libnanopb
     SHARED
-        ./example.c
+        ./deps/clib-nanopb/pb_common.h
+        ./deps/clib-nanopb/pb_common.c
+        ./deps/clib-nanopb/pb_decode.h
+        ./deps/clib-nanopb/pb_decode.c
+        ./deps/clib-nanopb/pb_encode.h
+        ./deps/clib-nanopb/pb_encode.c
+        ./deps/clib-nanopb/pb.h
 )
 
-target_compile_options(libexample PRIVATE ${flags})
+include(./cert/CMakeLists.txt)
 
-add_executable(libexample-test ./example_test.c)
-target_link_libraries(libexample-test cmocka)
-target_link_libraries(libexample-test libexample)
+# not really working
+#file(GLOB_RECURSE NANOPB_SOURCES,
+#    ./deps/clib-nanopb/*.h
+#    ./deps/clib-nanopb/*.c
+#)
 
-add_executable(cli ./main.c)
-target_link_libraries(cli libexample)
+#add_library(libexample
+#    SHARED
+#        ./example.c
+#)
+#
+#target_compile_options(libexample PRIVATE ${flags})
+#
+#add_executable(libexample-test ./example_test.c)
+#target_link_libraries(libexample-test cmocka)
+#target_link_libraries(libexample-test libexample)
+#
+#add_executable(cli ./main.c)
+#target_link_libraries(cli libexample libnanopb)
+#add_test(NAME LibExampleTest COMMAND libexample-test)
 
-add_test(NAME LibExampleTest COMMAND libexample-test)
 enable_testing()

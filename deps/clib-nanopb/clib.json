@@ -1,0 +1,15 @@
+{
+  "name": "clib-nanopb",
+  "version": "0.0.2",
+  "repo": "bonedaddy/clib-nanopb",
+  "description": "clib package for nanopb",
+  "src": [
+    "./pb_common.h",
+    "./pb_common.c",
+    "./pb_decode.h",
+    "./pb_decode.c",
+    "./pb_encode.h",
+    "./pb_encode.c",
+    "./pb.h"
+  ]
+}
